@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>家庭账本</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell" aria-label="家庭记账应用">
+      <section class="phone auth-mode">
+        <header class="status-bar" aria-hidden="true">
+          <span>9:41</span>
+          <span class="status-icons">● ● ▰</span>
+        </header>
+
+        <section class="page auth-page active" data-page="login" aria-labelledby="login-title">
+          <div class="auth-hero">
+            <p class="eyebrow">家庭共享记账</p>
+            <h1 id="login-title">欢迎回来</h1>
+            <p>用手机号登录或注册家庭账本。</p>
+          </div>
+
+          <div class="segmented auth-tabs" role="tablist" aria-label="登录注册切换">
+            <button class="selected" type="button" data-auth-mode="login">登录</button>
+            <button type="button" data-auth-mode="register">注册</button>
+          </div>
+
+          <form class="auth-form" id="auth-form">
+            <label class="auth-field">
+              <span>手机号</span>
+              <input id="phone-input" type="tel" inputmode="tel" maxlength="11" placeholder="请输入手机号" />
+            </label>
+            <label class="auth-field">
+              <span>密码</span>
+              <input id="password-input" type="password" minlength="6" placeholder="请输入密码" />
+            </label>
+            <button class="save-button" id="auth-submit" type="submit">登录</button>
+          </form>
+        </section>
+
+        <section class="page auth-page" data-page="family-setup" aria-labelledby="family-setup-title">
+          <div class="auth-hero">
+            <p class="eyebrow">家庭空间</p>
+            <h1 id="family-setup-title">加入或创建家庭</h1>
+            <p>先设置你的昵称，再创建家庭或通过邀请码加入家庭。</p>
+          </div>
+
+          <form class="auth-form" id="family-form">
+            <label class="auth-field">
+              <span>我的昵称</span>
+              <input id="nickname-input" type="text" maxlength="10" placeholder="例如：小明、爸爸、妈妈" />
+            </label>
+
+            <section class="family-action-panel">
+              <div>
+                <h2>创建家庭</h2>
+                <p>创建后会生成家庭账本空间。</p>
+              </div>
+              <button class="family-action-button" type="button" id="create-family-button">创建</button>
+            </section>
+
+            <section class="family-action-panel">
+              <div>
+                <h2>加入家庭</h2>
+                <p>输入家人提供的邀请码加入共享账本。</p>
+              </div>
+              <label class="auth-field inline-field">
+                <span>邀请码</span>
+                <input id="invite-code-input" type="text" maxlength="12" placeholder="例如：HOME8624" />
+              </label>
+              <button class="save-button" type="submit">加入家庭</button>
+            </section>
+          </form>
+        </section>
+
+        <section class="page" data-page="home" aria-labelledby="home-title">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow">共享账本</p>
+              <h1 id="home-title">家庭账本</h1>
+            </div>
+            <button class="icon-button" type="button" data-go="members" aria-label="我的">
+              <span class="icon user"></span>
+            </button>
+          </div>
+
+          <section class="account-tabs" aria-label="账本与资产">
+            <div class="account-tab-bar">
+              <button class="active" type="button" data-account-tab="0">共享结余</button>
+              <button type="button" data-account-tab="1">总资产</button>
+            </div>
+            <div class="account-carousel" id="account-carousel">
+              <article class="balance-card account-slide">
+                <div class="card-row">
+                  <span>共享结余</span>
+                  <button class="chip-button" type="button">本月</button>
+                </div>
+                <strong class="balance">¥ 18,562.40</strong>
+                <div class="split-stat">
+                  <span>总收入 ¥ 32,680.00</span>
+                  <span>总支出 ¥ 14,117.60</span>
+                </div>
+              </article>
+              <article class="balance-card asset-total-card account-slide">
+                <div class="card-row">
+                  <span>总资产</span>
+                  <button class="chip-button" type="button">全部账户</button>
+                </div>
+                <strong class="balance" id="total-assets">¥ 0.00</strong>
+                <div class="asset-card-footer">
+                  <span>银行卡、现金和其他资产汇总</span>
+                  <button class="asset-manage-button" type="button" data-go="assets">管理资产</button>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <div class="summary-grid">
+            <article class="mini-card">
+              <span>本月支出</span>
+              <strong>¥ 14,117.60</strong>
+              <i class="trend up"></i>
+            </article>
+            <article class="mini-card amber">
+              <span>本月收入</span>
+              <strong>¥ 32,680.00</strong>
+              <i class="trend rise"></i>
+            </article>
+          </div>
+
+          <button class="primary-action" type="button" data-go="record">
+            <span class="icon edit"></span>
+            记一笔
+          </button>
+
+          <div class="module-grid">
+            <button class="module-card" type="button" data-go="categories">
+              <span class="module-icon pie"></span>
+              <span>分类</span>
+            </button>
+            <button class="module-card" type="button" data-go="members">
+              <span class="module-icon people"></span>
+              <span>成员</span>
+            </button>
+            <button class="module-card" type="button" data-go="stats">
+              <span class="module-icon bars"></span>
+              <span>统计</span>
+            </button>
+          </div>
+
+          <section class="panel">
+            <div class="section-title">
+              <h2>最近记录</h2>
+              <button type="button">全部</button>
+            </div>
+            <div class="transaction-list" id="recent-list"></div>
+          </section>
+        </section>
+
+        <section class="page" data-page="record" aria-labelledby="record-title">
+          <div class="page-header compact">
+            <button class="icon-button" type="button" data-go="home" aria-label="返回首页">
+              <span class="icon arrow-left"></span>
+            </button>
+            <h1 id="record-title">记账</h1>
+            <span class="header-spacer"></span>
+          </div>
+
+          <div class="segmented" role="tablist" aria-label="记账类型">
+            <button class="selected" type="button" data-ledger-type="expense">支出</button>
+            <button type="button" data-ledger-type="income">收入</button>
+          </div>
+
+          <form class="record-form" id="record-form">
+            <label class="amount-field">
+              <span>金额</span>
+              <input id="amount-input" type="number" min="0" step="0.01" value="128.00" />
+            </label>
+
+            <section class="category-panel" aria-labelledby="category-title">
+              <h2 id="category-title">分类</h2>
+              <div class="category-grid" id="category-grid"></div>
+            </section>
+
+            <section class="field-panel">
+              <h2>选择账户</h2>
+              <div class="account-select-grid" id="record-account-grid"></div>
+            </section>
+
+            <label class="field-row">
+              <span>日期</span>
+              <input id="date-input" type="date" value="2026-06-02" />
+            </label>
+
+            <label class="note-field">
+              <span>备注</span>
+              <input id="note-input" type="text" placeholder="选填，填写备注信息..." />
+            </label>
+
+            <button class="save-button" type="submit">保存</button>
+          </form>
+        </section>
+
+        <section class="page" data-page="categories" aria-labelledby="categories-title">
+          <div class="page-header compact">
+            <button class="icon-button" type="button" data-go="home" aria-label="返回首页">
+              <span class="icon arrow-left"></span>
+            </button>
+            <h1 id="categories-title">分类</h1>
+            <span class="header-spacer"></span>
+          </div>
+
+          <section class="panel category-summary">
+            <div>
+              <p class="eyebrow">本月分类</p>
+              <h2>按支出场景管理</h2>
+            </div>
+            <strong>8 个分类</strong>
+          </section>
+
+          <form class="panel category-editor is-hidden" id="category-editor">
+            <div class="section-title">
+              <h2 id="category-editor-title">添加分类</h2>
+              <button type="button" id="cancel-category-button">取消</button>
+            </div>
+            <label class="auth-field">
+              <span>分类名称</span>
+              <input id="category-name-input" type="text" maxlength="8" placeholder="例如：餐饮" />
+            </label>
+            <div class="category-editor-grid">
+              <label class="auth-field">
+                <span>图标字</span>
+                <input id="category-icon-input" type="text" maxlength="1" placeholder="餐" />
+              </label>
+              <label class="auth-field">
+                <span>颜色</span>
+                <input id="category-color-input" type="color" value="#22a84d" />
+              </label>
+            </div>
+            <button class="save-button" type="submit">保存分类</button>
+          </form>
+
+          <section class="panel">
+            <div class="section-title">
+              <h2>常用分类</h2>
+              <button type="button" id="add-category-button">添加</button>
+            </div>
+            <div class="category-list" id="category-list"></div>
+          </section>
+        </section>
+
+        <section class="page" data-page="assets" aria-labelledby="assets-title">
+          <div class="page-header compact">
+            <button class="icon-button" type="button" data-go="home" aria-label="返回首页">
+              <span class="icon arrow-left"></span>
+            </button>
+            <h1 id="assets-title">资产管理</h1>
+            <span class="header-spacer"></span>
+          </div>
+
+          <section class="panel asset-summary">
+            <div>
+              <p class="eyebrow">总资产</p>
+              <h2 id="assets-page-total">¥ 0.00</h2>
+            </div>
+            <button type="button" id="add-asset-button">添加</button>
+          </section>
+
+          <form class="panel asset-editor is-hidden" id="asset-editor">
+            <div class="section-title">
+              <h2 id="asset-editor-title">添加资产</h2>
+              <button type="button" id="cancel-asset-button">取消</button>
+            </div>
+            <label class="auth-field">
+              <span>资产名称</span>
+              <input id="asset-name-input" type="text" maxlength="16" placeholder="例如：招商银行" />
+            </label>
+            <label class="auth-field">
+              <span>资产金额</span>
+              <input id="asset-balance-input" type="number" min="0" step="0.01" placeholder="例如：1000" />
+            </label>
+            <button class="save-button" type="submit">保存资产</button>
+          </form>
+
+          <form class="panel transfer-editor is-hidden" id="transfer-editor">
+            <div class="section-title">
+              <h2>资产转账</h2>
+              <button type="button" id="cancel-transfer-button">取消</button>
+            </div>
+            <label class="auth-field">
+              <span>转出账户</span>
+              <input id="transfer-from-input" type="text" readonly />
+            </label>
+            <label class="auth-field">
+              <span>转入账户</span>
+              <select id="transfer-to-input"></select>
+            </label>
+            <label class="auth-field">
+              <span>转账金额</span>
+              <input id="transfer-amount-input" type="number" min="0" step="0.01" placeholder="请输入金额" />
+            </label>
+            <button class="save-button" type="submit">确认转账</button>
+          </form>
+
+          <section class="panel">
+            <div class="section-title">
+              <h2>资产列表</h2>
+              <span>按账户管理余额</span>
+            </div>
+            <div class="asset-list" id="asset-list"></div>
+          </section>
+
+          <section class="panel hidden-assets-panel">
+            <div class="section-title">
+              <h2>隐藏资产</h2>
+              <span>不计入总资产</span>
+            </div>
+            <div class="asset-list hidden-asset-list" id="hidden-asset-list"></div>
+          </section>
+        </section>
+
+        <section class="page" data-page="stats" aria-labelledby="stats-title">
+          <div class="page-header compact">
+            <h1 id="stats-title">统计</h1>
+            <span class="header-spacer"></span>
+          </div>
+
+          <div class="segmented stats-mode-tabs" role="tablist" aria-label="统计维度">
+            <button class="selected" type="button" data-stats-mode="month">月</button>
+            <button type="button" data-stats-mode="year">年</button>
+          </div>
+
+          <div class="month-picker">
+            <button type="button" data-month="-1" aria-label="上个月">‹</button>
+            <span id="stats-month-label">2026年6月</span>
+            <button type="button" data-month="1" aria-label="下个月">›</button>
+          </div>
+
+          <section class="stats-summary-grid" aria-label="月度统计">
+            <article class="stats-summary-card expense">
+              <span id="stats-expense-label">本月支出</span>
+              <strong id="stats-expense">¥ 0.00</strong>
+            </article>
+            <article class="stats-summary-card income">
+              <span id="stats-income-label">本月收入</span>
+              <strong id="stats-income">¥ 0.00</strong>
+            </article>
+            <article class="stats-summary-card balance">
+              <span id="stats-balance-label">本月结余</span>
+              <strong id="stats-balance">¥ 0.00</strong>
+            </article>
+          </section>
+
+          <section class="panel overview">
+            <div class="section-title">
+              <h2>支出概览</h2>
+              <span id="stats-expense-total">总支出 ¥ 0.00</span>
+            </div>
+            <div class="chart-row">
+              <div class="donut" aria-label="支出分类占比图">
+                <span>¥14,117.60</span>
+                <small>总支出</small>
+              </div>
+              <div class="legend-list" id="legend-list"></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="section-title">
+              <h2>成员贡献</h2>
+              <span>按付款统计</span>
+            </div>
+            <div class="member-contrib" id="member-contrib"></div>
+          </section>
+
+        </section>
+
+        <section class="page" data-page="members" aria-labelledby="members-title">
+          <div class="page-header">
+            <div>
+              <p class="eyebrow">家庭共享</p>
+              <h1 id="members-title">我的</h1>
+            </div>
+            <button class="icon-button" type="button" aria-label="添加成员">+</button>
+          </div>
+
+          <section class="panel my-summary-panel">
+            <h2>家庭账本概览</h2>
+            <p>当前 4 位成员共同记录，本月共有 418 条流水。</p>
+          </section>
+
+          <section class="panel member-list-panel">
+            <h2>家庭成员</h2>
+            <div class="member-list" id="member-list"></div>
+          </section>
+        </section>
+
+        <nav class="bottom-nav" aria-label="主导航">
+          <button class="active" type="button" data-go="home">
+            <span class="nav-icon receipt"></span>
+            <span>账单</span>
+          </button>
+          <button class="nav-add" type="button" data-go="record" aria-label="记一笔">+</button>
+          <button type="button" data-go="stats">
+            <span class="nav-icon bars"></span>
+            <span>统计</span>
+          </button>
+        </nav>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
