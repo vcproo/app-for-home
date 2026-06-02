@@ -1,0 +1,11 @@
+name = "app-for-home-worker"
+main = "src/index.ts"
+compatibility_date = "2024-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "app-for-home-db"
+database_id = "970a8f51-bfe0-46af-9499-64dd8385772a"
+
+[vars]
+JWT_SECRET = "app-for-home-jwt-secret-2026"

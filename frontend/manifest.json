@@ -1,0 +1,28 @@
+{
+  "name": "家庭账本",
+  "appid": "__UNI__HOMEAPP",
+  "description": "家庭共享记账应用",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "app-plus": {
+    "distribute": {
+      "android": {
+        "permissions": [
+          "<uses-permission android:name=\"android.permission.INTERNET\"/>"
+        ]
+      }
+    },
+    "modules": {}
+  },
+  "h5": {
+    "devServer": {
+      "proxy": {
+        "/api": {
+          "target": "https://app-for-home-worker.hants666.workers.dev",
+          "changeOrigin": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "pages": [
+    { "path": "pages/login/index", "style": { "navigationBarTitleText": "登录", "navigationStyle": "custom" } },
+    { "path": "pages/family-setup/index", "style": { "navigationBarTitleText": "加入家庭", "navigationStyle": "custom" } },
+    { "path": "pages/home/index", "style": { "navigationBarTitleText": "家庭账本", "navigationStyle": "custom" } },
+    { "path": "pages/record/index", "style": { "navigationBarTitleText": "记一笔", "navigationStyle": "custom" } },
+    { "path": "pages/categories/index", "style": { "navigationBarTitleText": "分类管理", "navigationStyle": "custom" } },
+    { "path": "pages/assets/index", "style": { "navigationBarTitleText": "资产管理", "navigationStyle": "custom" } },
+    { "path": "pages/stats/index", "style": { "navigationBarTitleText": "统计", "navigationStyle": "custom" } },
+    { "path": "pages/members/index", "style": { "navigationBarTitleText": "我的", "navigationStyle": "custom" } }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#f5f6f4"
+  },
+  "tabBar": {
+    "color": "#737a72",
+    "selectedColor": "#22a84d",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "账单"
+      },
+      {
+        "pagePath": "pages/stats/index",
+        "text": "统计"
+      },
+      {
+        "pagePath": "pages/members/index",
+        "text": "我的"
+      }
+    ]
+  }
+}
